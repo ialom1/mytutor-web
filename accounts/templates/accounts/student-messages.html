@@ -1,0 +1,30 @@
+{%extends 'base.html'%}
+{%block head%}
+<title>Profile</title>
+{%endblock%}
+{%block tutornav%}
+{%endblock%}
+
+{%block body%}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h4 class="display-4">Messages and requests for classes</h4>
+  </div>
+</div>
+
+<div class="container">
+  {%for req in reqs%}
+  <div class="card border mb-3">
+    <div class="card-header bg-transparent">From: {{req.user.userprofile.full_name}}</div>
+    <div class="card-body">
+      <h5 class="card-title">Request for classes</h5>
+      <p class="card-text">{{req.msg}}</p>
+    </div>
+    <div class="card-footer bg-transparent">
+      <small class="text-muted">{{req.time}}</small>
+    </div>
+  </div>
+  {%endfor%}
+</div>
+
+{%endblock%}

@@ -1,0 +1,52 @@
+{%extends 'base.html'%}
+{%block head%}
+<title>Tutor Search</title>
+{%endblock%}
+{%block tutornav%}
+{%endblock%}
+
+{%block body%}
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 card card-body bg-light">
+      <form method="post">
+        {% csrf_token %}
+        <h2>Select a Study Level</h2>
+        {{form.study_level}}
+        <br>
+        <button name="searchBtn" type="submit" class="btn btn-primary" type="post">Search for Tutors</button>
+      </form>
+      <br>
+      <form method="post">
+        {% csrf_token %}
+        <div class="list-group">
+          {%for sub in subList%}
+          <a name="" href="{%url 'accounts:tutor_search_view_sub' subject=sub%}" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">{{sub}}</h5>
+              <small class="text-muted">Active</small>
+            </div>
+          </a>
+          {%endfor%}
+        </div>
+      </form>
+    </div>
+    <div class="col-md-6 card card-body bg-light">
+      <div class="list-group">
+        <h4>Available tutors for {{stlevel}} {{subject}}</h4>
+        {%for tutor in tutorList%}
+          <a href="{%url 'accounts:tutor_profile_view_pk' pk=tutor.user.pk%}" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">{{tutor.user.userprofile.full_name}}</h5>
+              <small class="text-muted">{{tutor.user.tutorprofile.charge_hr}}Tk. per hour</small>
+            </div>
+            <p class="mb-1"></p>
+            <small class="text-muted">{{tutor.user.userprofile.profession}}</small>
+          </a>
+        {%endfor%}
+      </div>
+    </div>
+
+  </div>
+</div>
+{%endblock%}

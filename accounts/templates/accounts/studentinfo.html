@@ -1,0 +1,60 @@
+{%extends 'base.html'%}
+{%block head%}
+<title>Profile</title>
+{%endblock%}
+{%block tutornav%}
+{%endblock%}
+
+{%block body%}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Student Details</h1>
+    <p class="lead"></p>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card card-body bg-light" style="height: 100%;">
+        <div class="text-center">
+          {%if user.studentprofile.student_image%}
+          <img src="{{user.studentprofile.student_image.url}}" alt="Responsive image" class="rounded img-thumbnail">
+          {%endif%}
+        </div>
+        <br>
+        <div class="text-center">
+          <p>
+            <h4 class="font-weight-bold text-capitalize">{{user.userprofile.full_name}}</h4>
+          </p>
+          <p>
+            <h6 class="font-italic text-capitalize">{{user.userprofile.city}}</h6>
+          </p>
+        </div>
+        <div class="text-center">
+          <a href="{%url 'accounts:class_request_view' pk=user.pk%}" class="btn btn-primary">Respond to Request</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card card-body bg-light">
+        <div class="text">
+          <h6 class="font-weight-bold text-capitalize">School/Institution:</h6>
+          <p class="font-weight-normal text-capitalize">{{user.studentprofile.school}}</p>
+        </div>
+        <div class="text">
+          <h6 class="font-weight-bold text-capitalize">Class/grade:</h6>
+          <p class="font-weight-normal text-capitalize"> {{user.studentprofile.grade}}</p>
+        </div>
+        <div class="text">
+          <h6 class="font-weight-bold text-capitalize">Favourite Subjects:</h6>
+          <p class="font-weight-normal text-capitalize">{{user.studentprofile.fav_subjects}}</p>
+        </div>
+        <div class="text">
+          <h6 class="font-weight-bold text-capitalize">Description:</h6>
+          <p class="font-weight-normal text-capitalize">{{user.studentprofile.description}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock%}

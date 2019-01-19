@@ -1,0 +1,59 @@
+{%extends 'base.html'%}
+{%block head%}
+<title>Profile</title>
+{%endblock%}
+{%block studentnav%}
+{%endblock%}
+
+{%block body%}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Welcome {{user.userprofile.full_name}}</h1>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card card-body bg-light" style="height: 100%;">
+        <div class="text-center">
+          {%if user.tutorprofile.tutor_image%}
+          <img src="{{user.tutorprofile.tutor_image.url}}" alt="Responsive image" class="rounded img-thumbnail">
+          {%endif%}
+        </div>
+        <br>
+        <div class="text-center">
+          <p>
+            <h4 class="font-weight-bold text-capitalize">{{user.userprofile.full_name}}</h4>
+          </p>
+          <p>
+            <h6 class="font-italic text-capitalize">{{user.userprofile.profession}}</h6>
+          </p>
+        </div>
+        <div class="text-center">
+          <h6 class="font-weight-bold text-capitalize">Charges per hour:</h6>
+          <p class="font-weight-normal text-capitalize">{{user.tutorprofile.charge_hr}} taka only</p>
+        </div>
+        <div class="text-center">
+          <a href="/account/edit-tutorprofile/" class="btn btn-primary">Edit Profile</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card card-body bg-light">
+        <div class="text">
+          <h6 class="font-weight-bold text-capitalize">City:</h6>
+          <p class="font-weight-normal text-capitalize">{{user.userprofile.city}}</p>
+        </div>
+        <div class="text">
+          <h6 class="font-weight-bold text-capitalize">Description:</h6>
+          <p class="font-weight-normal text-capitalize"> {{user.tutorprofile.description}}</p>
+        </div>
+        <div class="text">
+          <h6 class="font-weight-bold text-capitalize">Expertise:</h6>
+          <p class="font-weight-normal text-capitalize">{{user.tutorprofile.expertise}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock%}

@@ -1,0 +1,53 @@
+{%extends 'base.html'%}
+{%block head%}
+<title>Tutor Profile</title>
+{%endblock%}
+{%block studentnav%}
+{%endblock%}
+
+{%block body%}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Tutor Profile</h1>
+    <p class="lead">Set up your profile</p>
+  </div>
+</div>
+<div class="container">
+  <div class="card card-body bg-light">
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+      {% if messages %}
+      <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      <div class="row">
+        <div class="col-md-6">
+          <p>
+            <h6>Highest Educational Qualification:</h6>
+            {{form.edu_qualification}}</p>
+          <p>
+            <h6>Subjects of Expertise:</h6>
+            {{form.expertise}}</p>
+          <p>
+            <h6>Set your profile image:</h6>
+            {{form.tutor_image}}</p>
+        </div>
+        <div class="col-md-6">
+          <p>
+            <h6>Write a few lines about yourself:</h6>
+            {{form.description}}</p>
+          <p>
+            <h6>How much would you charge per hour</h6>
+            {{form.charge_hr}}</p>
+            <button class="btn btn-primary float-right" type="submit" name="button">Save Changes</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+{%endblock%}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+  integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"
+  integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+
+  {%block head%}
+  <title>Tutorial Base</title>
+  {%endblock%}
+</head>
+<body>
+  <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <a class="navbar-brand" href="/account/login/">MyTutor</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        {%if user.is_authenticated%}
+          {%block tutornav%}
+          <a class="nav-item nav-link" href="/account/course-selection/">Courses Selection</a>
+          <a class="nav-item nav-link" href="/account/tutorprofile/">Profile</a>
+          <a class="nav-item nav-link" href="/account/tutor-messages/">Messages</a>
+          {%endblock%}
+          {%block studentnav%}
+          <a class="nav-item nav-link" href="/account/tutor-search/">Tutor Search</a>
+          <a class="nav-item nav-link" href="/account/studentprofile/">Profile</a>
+          <a class="nav-item nav-link" href="/account/student-messages/">Messages</a>
+          {%endblock%}
+        {%endif%}
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        {%if user.is_authenticated%}
+        <a class="nav-item nav-link" href="/account/logout/">Logout</a>
+        {%else%}
+        <a class="nav-item nav-link" href="/account/register/">Create an account</a>
+        {%endif%}
+      </ul>
+    </div>
+  </nav>
+  {%block body%}
+  <h1>Base Body</h1>
+  {%endblock%}
+</body>
+</html>

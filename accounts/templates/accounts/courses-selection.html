@@ -1,0 +1,38 @@
+{%extends 'base.html'%}
+{%block head%}
+<title>Courses Selection</title>
+{%endblock%}
+{%block studentnav%}
+{%endblock%}
+
+{%block body%}
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 card card-body bg-light">
+      <form method="post">
+        {% csrf_token %}
+        <h2>Select a Study Level</h2>
+        {{form.study_level}}
+        <br>
+        <button name="searchBtn" type="submit" class="btn btn-primary" type="post">Search for Subjects</button>
+      </form>
+    </div>
+    <div class="col-md-6 card card-body bg-light">
+      <form method="post">
+        {% csrf_token %}
+        <div class="list-group">
+          {%for sub in subList%}
+          <a name="" href="{%url 'accounts:course_selection_view_sub' subject=sub%}" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">{{sub}}</h5>
+              <small class="text-muted"></small>
+            </div>
+          </a>
+          {%endfor%}
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
+{%endblock%}

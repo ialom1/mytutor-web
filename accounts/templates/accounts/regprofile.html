@@ -1,0 +1,61 @@
+{%extends 'base.html'%}
+{%block head%}
+<title>Profile</title>
+{%endblock%}
+{%block tutornav%}
+{%endblock%}
+{%block studentnav%}
+{%endblock%}
+
+{%block body%}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">User Profile</h1>
+    <p class="lead">Please provide some basic information about yourself</p>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4 col-sm-4 col-xs-12"></div>
+    <div class="col-md-4 col-sm-4 col-xs-12 card card-body bg-light">
+      <form method="post" autocomplete="off">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {% if messages %}
+        <ul>
+          {% for message in messages %}
+          <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        <h5 class="card-title">Basic Profile information</h5>
+        <div class="form-group">
+          {{form.full_name}}
+          {{form.full_name.errors}}
+        </div>
+
+        <div class="form-group">
+          {{form.profession}}
+          {{form.profession.errors}}
+        </div>
+
+        <div class="form-group" id="citySelect">
+          <label for="citySelect">Selct your City</label>
+          {{form.city}}
+          {{form.city.errors}}
+        </div>
+
+        <div class="form-group" id="citySelect">
+          <label for="citySelect">Would you like to join as</label>
+          {{form.user_type}}
+          {{form.user_type.errors}}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Continue</button>
+      </form>
+    </div>
+    <div class="col-md-4 col-sm-4 col-xs-12"></div>
+  </div>
+</div>
+{%endblock%}

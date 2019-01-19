@@ -1,0 +1,50 @@
+{%extends 'base.html'%}
+{%block head%}
+<title>Login</title>
+{%endblock%}
+{%block studentnav%}
+{%endblock%}
+
+{%block body%}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h4 class="display-4">Class Request Message</h4>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 card card-body bg-light">
+      <form class="login" method="post" autocomplete="off">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {% if messages %}
+        <ul>
+          {% for message in messages %}
+          <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        <h5 class="card-title text-center"></h5><br>
+        <div class="row">
+          <div class="col-md-6">
+            <h6 class="font-weight-bold text-capitalize">From: {{sender}}</h6>
+          </div>
+          <div class="col-md-6">
+            <h6 class="font-weight-bold text-capitalize">To: {{reciever}} ({{msg_to}})</h6>
+          </div>
+        </div>
+        <h6>Please write your message here.</h6>
+        <div class="form-group">
+          {{form.msg}}
+          {{form.msg.errors}}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Send</button>
+      </form>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>
+{%endblock%}
